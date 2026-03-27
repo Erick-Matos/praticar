@@ -1,15 +1,53 @@
-const ADDRESS = "R. Francisco Portugal, 519 - Salgado Filho, Aracaju - SE, 49020-390";
-const ENCODED_ADDRESS = encodeURIComponent(ADDRESS);
+const LOCATION = {
+  name: "PRATICAR Fisioterapia, Saude e Bem Estar",
+  lat: -10.9318014,
+  lng: -37.055895,
+};
+
+const DEST = `${LOCATION.lat},${LOCATION.lng}`;
+const ENCODED_NAME = encodeURIComponent(LOCATION.name);
+const WAZE_PLACE_ID = "place.ChIJPWoDydyzGgcRhEjnCrdnezM";
+
+const MAP_URLS = {
+  waze: {
+    appPlace: `waze://?q=${WAZE_PLACE_ID}&navigate=yes`,
+    appCoords: `waze://?ll=${DEST}&q=${ENCODED_NAME}&navigate=yes`,
+    webPlace: `https://www.waze.com/pt-BR/live-map/directions/br/se/praticar-fisioterapia,-saude-e-bem-estar?navigate=yes&to=${WAZE_PLACE_ID}`,
+    webCoords: `https://www.waze.com/ul?ll=${DEST}&navigate=yes`,
+  },
+  google: {
+    app: `comgooglemaps://?daddr=${DEST}&directionsmode=driving`,
+    web: `https://www.google.com/maps/dir/?api=1&destination=${DEST}&travelmode=driving`,
+  },
+};
 
 function openWithFallback(appUrl, webUrl) {
-  const start = Date.now();
+  let appOpened = false;
+
+  const markAsOpened = () => {
+    appOpened = true;
+  };
+
+  window.addEventListener("blur", markAsOpened, { once: true });
+  document.addEventListener("visibilitychange", markAsOpened, { once: true });
+  window.addEventListener("pagehide", markAsOpened, { once: true });
+
   window.location.href = appUrl;
 
   window.setTimeout(() => {
-    if (Date.now() - start < 1200) {
-      window.open(webUrl, "_blank", "noopener,noreferrer");
+    if (!appOpened) {
+      window.location.href = webUrl;
     }
-  }, 700);
+  }, 1000);
+}
+
+function openWazeWithFallbackChain() {
+  openWithFallback(MAP_URLS.waze.appPlace, MAP_URLS.waze.webPlace);
+
+  window.setTimeout(() => {
+    if (document.hidden) return;
+    openWithFallback(MAP_URLS.waze.appCoords, MAP_URLS.waze.webCoords);
+  }, 1200);
 }
 
 export function setupLocationChooser() {
@@ -23,20 +61,21 @@ export function setupLocationChooser() {
 
   trigger.addEventListener("click", () => {
     dialog.showModal();
+    // Keep initial focus on a neutral action to avoid the impression
+    // that one provider (Waze) is preselected.
+    closeButton?.focus();
   });
 
   closeButton?.addEventListener("click", () => dialog.close());
 
   wazeButton?.addEventListener("click", () => {
-    const appUrl = `waze://?q=${ENCODED_ADDRESS}&navigate=yes`;
-    const webUrl = `https://waze.com/ul?q=${ENCODED_ADDRESS}&navigate=yes`;
-    openWithFallback(appUrl, webUrl);
+    dialog.close();
+    openWazeWithFallbackChain();
   });
 
   googleButton?.addEventListener("click", () => {
-    const appUrl = `comgooglemaps://?q=${ENCODED_ADDRESS}`;
-    const webUrl = `https://www.google.com/maps/search/?api=1&query=${ENCODED_ADDRESS}`;
-    openWithFallback(appUrl, webUrl);
+    dialog.close();
+    openWithFallback(MAP_URLS.google.app, MAP_URLS.google.web);
   });
 }
 

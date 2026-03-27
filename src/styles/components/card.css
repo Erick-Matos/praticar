@@ -102,10 +102,6 @@
   color: rgba(242, 248, 242, .9);
 }
 
-/* Variantes */
-.card[data-variant="contact"] .card__icon{color: var(--brand-2)}
-.card[data-variant="location"] .card__icon{color: var(--brand-3)}
-
 @media (max-width: 719px){
   .card{padding: 10px 14px}
 }
