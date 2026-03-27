@@ -52,15 +52,18 @@
   filter: blur(12px);
 }
 
-.card:hover{
-  transform: translateY(-2px);
-  border-color: rgba(242, 248, 242, .35);
-  box-shadow: 0 22px 65px rgba(16, 24, 16, .18);
-}
-.card:hover::after{opacity:.55}
+@media (hover: hover) and (pointer: fine){
+  .card:hover{
+    transform: translateY(-2px);
+    border-color: rgba(242, 248, 242, .35);
+    box-shadow: 0 22px 65px rgba(16, 24, 16, .18);
+  }
 
-.card:active{
-  transform: translateY(0px) scale(.995);
+  .card:hover::after{opacity:.55}
+
+  .card:active{
+    transform: translateY(0px) scale(.995);
+  }
 }
 
 .card__icon{
@@ -104,5 +107,16 @@
 
 @media (max-width: 719px){
   .card{padding: 10px 14px}
+}
+
+@media (hover: none), (pointer: coarse){
+  .card{
+    transition: none;
+    transform: none;
+  }
+
+  .card::after{
+    display: none;
+  }
 }
 

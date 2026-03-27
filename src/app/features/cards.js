@@ -2,9 +2,14 @@ function prefersReducedMotion() {
   return window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 }
 
+function canUsePointerEffects() {
+  return window.matchMedia?.("(hover: hover) and (pointer: fine)")?.matches ?? false;
+}
+
 export function enhanceCards({ selector }) {
   const cards = Array.from(document.querySelectorAll(selector));
   if (!cards.length) return;
+  if (!canUsePointerEffects()) return;
 
   for (const card of cards) {
     card.addEventListener(
