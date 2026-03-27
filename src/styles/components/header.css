@@ -1,0 +1,76 @@
+.header{
+  width: min(560px, 100%);
+  padding: 10px 0 12px;
+  text-align:center;
+}
+
+.profile{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 8px;
+}
+
+.avatar{
+  width: min(320px, 84vw);
+  display:flex;
+  justify-content:center;
+}
+
+.avatar__img{
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: 50% 8%;
+  transform: scale(1.1);
+  display:block;
+}
+
+.avatar__img--logo{
+  max-width: 100%;
+  object-fit: contain;
+  object-position: 50% 50%;
+  transform: none;
+  padding: 0;
+}
+
+.brand__eyebrow{
+  margin:0;
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(34, 48, 34, .75);
+}
+
+.subtitle{
+  margin: 0;
+  color: rgba(34, 48, 34, .82);
+  line-height: 1.35;
+  max-width: 62ch;
+}
+
+.social{
+  margin-top: 6px;
+}
+
+.social__btn{
+  width: 42px;
+  height: 42px;
+  border-radius: 999px;
+  display:grid;
+  place-items:center;
+  text-decoration:none;
+  color: rgba(22, 32, 22, .85);
+  background: rgba(242, 248, 242, .75);
+  border: 1px solid rgba(98, 127, 74, .18);
+  box-shadow: 0 10px 25px rgba(16, 24, 16, .08);
+  transition: transform var(--dur-2) var(--ease-out), box-shadow var(--dur-2) var(--ease-out);
+}
+
+.social__btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 16px 34px rgba(16, 24, 16, .12);
+}
+
+.social__btn svg{width: 20px; height: 20px}
+

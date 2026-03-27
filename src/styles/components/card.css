@@ -1,0 +1,112 @@
+.grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 10px 0 0;
+}
+
+.card{
+  --mx: .5;
+  --my: .3;
+
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  padding: 10px 16px;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(242, 248, 242, .22);
+  background:
+    radial-gradient(220px 180px at calc(var(--mx) * 100%) calc(var(--my) * 100%), rgba(149, 180, 106, .22), transparent 60%),
+    #627F4A;
+  box-shadow: var(--shadow-1);
+  text-decoration:none;
+  transform: translateY(0);
+  transition:
+    transform var(--dur-2) var(--ease-out),
+    box-shadow var(--dur-2) var(--ease-out),
+    border-color var(--dur-2) var(--ease-out);
+  overflow:hidden;
+}
+
+.card[type="button"]{
+  width: 100%;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.card:focus-visible{
+  outline: 3px solid rgba(98, 127, 74, .55);
+  outline-offset: 4px;
+}
+
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: linear-gradient(135deg, rgba(98, 127, 74, .55), rgba(149, 180, 106, .25), rgba(112, 146, 85, .35));
+  opacity: 0;
+  transition: opacity var(--dur-2) var(--ease-out);
+  z-index:0;
+  filter: blur(12px);
+}
+
+.card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(242, 248, 242, .35);
+  box-shadow: 0 22px 65px rgba(16, 24, 16, .18);
+}
+.card:hover::after{opacity:.55}
+
+.card:active{
+  transform: translateY(0px) scale(.995);
+}
+
+.card__icon{
+  width: 46px;
+  height: 46px;
+  border-radius: 18px;
+  display:grid;
+  place-items:center;
+  color: var(--brand-1);
+  background: rgba(242, 248, 242, .75);
+  border: 1px solid rgba(98, 127, 74, .18);
+  box-shadow: 0 10px 25px rgba(16, 24, 16, .10);
+  flex: 0 0 auto;
+  position:relative;
+  z-index:1;
+}
+
+.card__icon svg{width: 22px; height: 22px}
+
+.card__body{
+  min-width:0;
+  flex: 1 1 auto;
+  position:relative;
+  z-index:1;
+}
+
+.card__title{
+  margin:0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #F2F8F2;
+}
+
+.card__desc{
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.25;
+  color: rgba(242, 248, 242, .9);
+}
+
+/* Variantes */
+.card[data-variant="contact"] .card__icon{color: var(--brand-2)}
+.card[data-variant="location"] .card__icon{color: var(--brand-3)}
+
+@media (max-width: 719px){
+  .card{padding: 10px 14px}
+}
+

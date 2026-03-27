@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+
+    <title>Link na bio</title>
+    <meta name="description" content="Links oficiais — comunidade, pré‑evento, contato e localização." />
+
+    <meta property="og:title" content="Link na bio" />
+    <meta property="og:description" content="Links oficiais — comunidade, pré‑evento, contato e localização." />
+    <meta property="og:type" content="website" />
+
+    <link rel="icon" href="/assets/icons/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="page">
+      <header class="header" role="banner">
+        <div class="profile" aria-label="Perfil">
+          <div class="avatar">
+            <img class="avatar__img avatar__img--logo" src="/assets/icons/logo.png" alt="Logo" decoding="async" loading="eager" />
+          </div>
+
+          <p class="brand__eyebrow">Links oficiais</p>
+          <p class="subtitle">Pilates · Fisioterapia Esportiva · Osteopatia </p>
+
+          <div class="social" aria-label="Redes sociais">
+            <a class="social__btn" href="https://www.instagram.com/praticarfisioterapia/" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="4" y="4" width="16" height="16" rx="5" />
+                <circle cx="12" cy="12" r="3.5" />
+                <circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <main id="conteudo" class="content" role="main">
+        <section class="grid" aria-label="Acessos rápidos">
+          <a class="card" data-variant="community" href="https://chat.whatsapp.com/E3Z6lpfJIce655iJRrJwWq" target="_blank" rel="noreferrer noopener" aria-label="Comunidade e Pré-evento">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 18a4 4 0 0 0-8 0" />
+                <circle cx="12" cy="10" r="3" />
+                <path d="M19 20c1.2-1 2-2.6 2-4.4A6.6 6.6 0 0 0 17 9.4" />
+                <path d="M5 20c-1.2-1-2-2.6-2-4.4A6.6 6.6 0 0 1 7 9.4" />
+              </svg>
+            </div>
+            <div class="card__body">
+              <h2 class="card__title">Comunidade</h2>
+              <p class="card__desc">Pré‑evento, avisos e materiais</p>
+            </div>
+          </a>
+
+          <a class="card" data-variant="contact" href="https://api.whatsapp.com/message/PGAQDWUMLGWSM1?autoload=1&app_absent=0&utm_source=ig" target="_blank" rel="noreferrer noopener" aria-label="Entre em contato no WhatsApp">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 6h16v12H4z" />
+                <path d="m4 7 8 6 8-6" />
+              </svg>
+            </div>
+            <div class="card__body">
+              <h2 class="card__title">Entre em contato</h2>
+              <p class="card__desc">Dúvidas, parcerias e suporte</p>
+            </div>
+          </a>
+
+          <button class="card" data-variant="location" type="button" aria-label="Escolher aplicativo de localização">
+            <div class="card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 21s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11z" />
+                <circle cx="12" cy="10" r="2.5" />
+              </svg>
+            </div>
+            <div class="card__body">
+              <h2 class="card__title">Localização</h2>
+              <p class="card__desc">Como chegar</p>
+            </div>
+          </button>
+        </section>
+
+      </main>
+
+      <dialog id="location-dialog" class="location-dialog" aria-labelledby="location-title">
+        <div class="location-dialog__panel">
+          <h2 id="location-title" class="location-dialog__title">Abrir localização em:</h2>
+          <p class="location-dialog__address">R. Francisco Portugal, 519 - Salgado Filho, Aracaju - SE</p>
+          <div class="location-dialog__actions">
+            <button id="open-waze" class="location-dialog__btn" type="button">Waze</button>
+            <button id="open-google" class="location-dialog__btn" type="button">Google Maps</button>
+          </div>
+          <button id="close-location-dialog" class="location-dialog__cancel" type="button">Cancelar</button>
+        </div>
+      </dialog>
+
+      <footer class="footer" role="contentinfo">
+        <p class="footer__text">
+          © <span id="year"></span> Sua Marca. Feito para abrir rápido e funcionar em qualquer domínio.
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/app/app.js"></script>
+  </body>
+</html>

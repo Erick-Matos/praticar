@@ -1,0 +1,30 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 800px at 20% 0%, rgba(149, 180, 106, .22), transparent 55%),
+    radial-gradient(900px 700px at 80% 15%, rgba(112, 146, 85, .18), transparent 60%),
+    linear-gradient(180deg, var(--brand-5), var(--brand-4));
+}
+
+a{color:inherit}
+img,svg{display:block}
+
+:focus-visible{
+  outline: 3px solid rgba(98, 127, 74, .55);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
