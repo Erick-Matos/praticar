@@ -1,8 +1,6 @@
 :root{
   /* Marca */
   --brand-1: #627F4A;
-  --brand-2: #709255;
-  --brand-3: #95B46A;
   --brand-4: #D8DED8;
   --brand-5: #F2F8F2;
 
@@ -16,7 +14,6 @@
   --radius-xl: 22px;
   --shadow-1: 0 18px 55px rgba(16, 24, 16, .16);
   --shadow-2: 0 10px 26px rgba(16, 24, 16, .14);
-  --shadow-inset: inset 0 1px 0 rgba(242, 248, 242, .65);
 
   /* Easing */
   --ease-out: cubic-bezier(.2,.8,.2,1);

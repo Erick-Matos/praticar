@@ -1,53 +1,22 @@
 const LOCATION = {
-  name: "PRATICAR Fisioterapia, Saude e Bem Estar",
   lat: -10.9318014,
   lng: -37.055895,
 };
 
 const DEST = `${LOCATION.lat},${LOCATION.lng}`;
-const ENCODED_NAME = encodeURIComponent(LOCATION.name);
-const WAZE_PLACE_ID = "place.ChIJPWoDydyzGgcRhEjnCrdnezM";
+const WAZE_PLACE_ID = "ChIJPWoDydyzGgcRhEjnCrdnezM";
 
 const MAP_URLS = {
   waze: {
-    appPlace: `waze://?q=${WAZE_PLACE_ID}&navigate=yes`,
-    appCoords: `waze://?ll=${DEST}&q=${ENCODED_NAME}&navigate=yes`,
-    webPlace: `https://www.waze.com/pt-BR/live-map/directions/br/se/praticar-fisioterapia,-saude-e-bem-estar?navigate=yes&to=${WAZE_PLACE_ID}`,
-    webCoords: `https://www.waze.com/ul?ll=${DEST}&navigate=yes`,
+    webPlace: `https://www.waze.com/en/live-map/directions/br/se/praticar-fisioterapia,-saude-e-bem-estar?navigate=yes&place=${WAZE_PLACE_ID}`,
   },
   google: {
-    app: `comgooglemaps://?daddr=${DEST}&directionsmode=driving`,
-    web: `https://www.google.com/maps/dir/?api=1&destination=${DEST}&travelmode=driving`,
+    web: "https://maps.app.goo.gl/UeCfo8QKXWr7PXEh7",
   },
 };
 
-function openWithFallback(appUrl, webUrl) {
-  let appOpened = false;
-
-  const markAsOpened = () => {
-    appOpened = true;
-  };
-
-  window.addEventListener("blur", markAsOpened, { once: true });
-  document.addEventListener("visibilitychange", markAsOpened, { once: true });
-  window.addEventListener("pagehide", markAsOpened, { once: true });
-
-  window.location.href = appUrl;
-
-  window.setTimeout(() => {
-    if (!appOpened) {
-      window.location.href = webUrl;
-    }
-  }, 1000);
-}
-
-function openWazeWithFallbackChain() {
-  openWithFallback(MAP_URLS.waze.appPlace, MAP_URLS.waze.webPlace);
-
-  window.setTimeout(() => {
-    if (document.hidden) return;
-    openWithFallback(MAP_URLS.waze.appCoords, MAP_URLS.waze.webCoords);
-  }, 1200);
+function openWebMaps(url) {
+  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 export function setupLocationChooser() {
@@ -70,12 +39,12 @@ export function setupLocationChooser() {
 
   wazeButton?.addEventListener("click", () => {
     dialog.close();
-    openWazeWithFallbackChain();
+    openWebMaps(MAP_URLS.waze.webPlace);
   });
 
   googleButton?.addEventListener("click", () => {
     dialog.close();
-    openWithFallback(MAP_URLS.google.app, MAP_URLS.google.web);
+    openWebMaps(MAP_URLS.google.web);
   });
 }
 
